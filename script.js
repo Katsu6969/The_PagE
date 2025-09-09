@@ -1,0 +1,680 @@
+// Portfolio Configuration Data - Customize this object to update your portfolio content
+const portfolioData = {
+    hero: {
+        name: "Madhur Shukla", 
+        tagline: "Building Tech, Learning AI, Exploring Ideas",
+        profileImage: "./profile.jpeg", // Replace with your image
+        resumeLink: "#" // Add your resume PDF link here
+    },
+    about: {
+        text: "Passionate tech enthusiast with a love for AI and machine learning. When I'm not coding, you'll find me on the volleyball court or exploring new ideas with friends. I believe in building technology that makes a difference."
+    },
+    skills: {
+        "Soft Skills": ["Problem Solving", "Team Leadership", "Communication", "Adaptability", "Creative Thinking"],
+        "Programming": ["Python", "JavaScript", "Java", "C-(Basic)"],
+        "Web Development": ["React", "HTML/CSS", "MongoDB",],
+        "Data": ["Data Analysis", "Pandas", "Ms-office"],
+        "Tools & Technologies": ["Git", "Figma", "Canva", "VS Code", "Jupyter"]
+    },
+    projects: [
+        {
+            id: 1,
+            name: "AI Chatbot Assistant",
+            image: "https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=AI+Chatbot",
+            description: "Intelligent chatbot using natural language processing and machine learning for automated customer support with sentiment analysis.",
+            tools: ["Python", "TensorFlow", "Flask", "NLP"],
+            github: "https://github.com/yourusername/ai-chatbot",
+            demo: "https://your-demo-link.com"
+        },
+        {
+            id: 2,
+            name: "E-commerce Platform",
+            image: "https://via.placeholder.com/400x250/A855F7/FFFFFF?text=E-commerce",
+            description: "Full-stack e-commerce solution with secure payment integration, inventory management, and comprehensive admin dashboard.",
+            tools: ["React", "Node.js", "MongoDB", "Stripe"],
+            github: "https://github.com/yourusername/ecommerce",
+            demo: "https://your-demo-link.com"
+        },
+        {
+            id: 3,
+            name: "Data Visualization Dashboard",
+            image: "https://via.placeholder.com/400x250/EC4899/FFFFFF?text=Data+Viz",
+            description: "Interactive dashboard for complex data analysis with real-time updates, custom charts, and export functionality.",
+            tools: ["D3.js", "Python", "PostgreSQL", "Chart.js"],
+            github: "https://github.com/yourusername/dataviz",
+            demo: "https://your-demo-link.com"
+        },
+        {
+            id: 4,
+            name: "Mobile Task Manager",
+            image: "https://via.placeholder.com/400x250/7C3AED/FFFFFF?text=Task+Manager",
+            description: "Cross-platform mobile application for productivity management with offline sync and collaborative features.",
+            tools: ["React Native", "Firebase", "Redux", "Node.js"],
+            github: "https://github.com/yourusername/task-manager",
+            demo: "https://your-demo-link.com"
+        },
+        {
+            id: 5,
+            name: "Blockchain Voting System",
+            image: "https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=Blockchain",
+            description: "Secure and transparent voting system using blockchain technology to ensure vote integrity and anonymity.",
+            tools: ["Solidity", "Web3.js", "Ethereum", "React"],
+            github: "https://github.com/yourusername/blockchain-voting",
+            demo: "https://your-demo-link.com"
+        },
+        {
+            id: 6,
+            name: "Weather Prediction ML Model",
+            image: "https://via.placeholder.com/400x250/A855F7/FFFFFF?text=Weather+ML",
+            description: "Machine learning model for accurate weather prediction using historical data and advanced algorithms with web interface.",
+            tools: ["Python", "Scikit-learn", "Flask", "Matplotlib"],
+            github: "https://github.com/yourusername/weather-ml",
+            demo: "https://your-demo-link.com"
+        }
+    ],
+    achievements: [
+        {
+            title: "AWS Certified Solutions Architect",
+            issuer: "Amazon Web Services",
+            link: "https://aws.amazon.com/certification/",
+            type: "certification"
+        },
+        {
+            title: "Google Data Analytics Professional Certificate",
+            issuer: "Google Career Certificates",
+            link: "https://grow.google/certificates/data-analytics/",
+            type: "certification"
+        },
+        {
+            title: "Microsoft Azure Fundamentals",
+            issuer: "Microsoft",
+            link: "https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/",
+            type: "certification"
+        },
+        {
+            title: "First Place - University Hackathon 2024",
+            issuer: "Your University Tech Department",
+            link: "#",
+            type: "achievement"
+        },
+        {
+            title: "Best Innovation Award - State Level Competition",
+            issuer: "State Technology Board",
+            link: "#",
+            type: "achievement"
+        },
+        {
+            title: "Volleyball Regional Level 2022",
+            issuer: "Icse/Isc National sports 2022",
+            link: "#",
+            type: "achievement"
+        },
+        {
+            title: "Open Source Contributor - 500+ Commits",
+            issuer: "GitHub Community",
+            link: "https://github.com/yourusername",
+            type: "achievement"
+        }
+    ],
+    education: {
+        degree: "Bachelor of Technology in Computer Science",
+        university: "Your University Name",
+        year: "2021-2025"
+    },
+    contact: {
+        github: "https://github.com/yourusername",
+        linkedin: "https://linkedin.com/in/yourusername",
+        email: "your.email@example.com",
+        instagram: "https://instagram.com/yourusername" // Optional - remove if not needed
+    }
+};
+
+// Global Variables
+let currentFlippedCard = null;
+let isTypingComplete = false;
+
+// Utility Functions
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function updateActiveNavLink() {
+    const sections = ['hero', 'about', 'skills', 'projects', 'achievements', 'education', 'contact'];
+    const navLinks = document.querySelectorAll('.nav-link');
+    let activeIndex = -1;
+    
+    sections.forEach((sectionId, index) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionHeight = rect.height;
+            const scrollPosition = window.scrollY + 150; // Offset for navbar
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                activeIndex = index;
+            }
+        }
+    });
+    
+    // Remove active class from all nav links
+    navLinks.forEach(link => link.classList.remove('active'));
+    
+    // Add active class to current section (skip hero section in nav)
+    if (activeIndex > 0 && navLinks[activeIndex - 1]) {
+        navLinks[activeIndex - 1].classList.add('active');
+    }
+}
+
+// Component Creation Functions
+function createSkillCard(category, skills) {
+    const iconMap = {
+        "Soft Skills": "fas fa-user",
+        "Programming": "fas fa-code",
+        "Web Development": "fas fa-globe",
+        "Data & AI": "fas fa-brain",
+        "Tools & Technologies": "fas fa-cog"
+    };
+
+    const skillsHTML = skills.map(skill => `
+        <div class="skill-item">
+            <div class="skill-dot"></div>
+            <span>${skill}</span>
+        </div>
+    `).join('');
+
+    return `
+        <div class="skill-card">
+            <div class="skill-header">
+                <i class="${iconMap[category] || 'fas fa-star'}"></i>
+                <h3>${category}</h3>
+            </div>
+            <div class="skill-list">
+                ${skillsHTML}
+            </div>
+        </div>
+    `;
+}
+
+function createProjectCard(project) {
+    const toolsHTML = project.tools.map(tool => 
+        `<span class="project-tool">${tool}</span>`
+    ).join('');
+
+    return `
+        <div class="project-card" data-project-id="${project.id}">
+            <div class="project-card-inner">
+                <div class="project-card-front">
+                    <img src="${project.image}" alt="${project.name}" class="project-image" loading="lazy">
+                    <div class="project-front-content">
+                        <h3 class="project-title">${project.name}</h3>
+                        <p class="project-hint">Click to flip</p>
+                    </div>
+                </div>
+                <div class="project-card-back">
+                    <div>
+                        <h3 class="project-title">${project.name}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tools">
+                            ${toolsHTML}
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.github}" class="project-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                            <i class="fab fa-github"></i>
+                            <span>Code</span>
+                        </a>
+                        <a href="${project.demo}" class="project-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function createAchievementItem(achievement) {
+    return `
+        <div class="achievement-item">
+            <div class="achievement-content">
+                <div class="achievement-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>${achievement.title}</h3>
+                    <p>${achievement.issuer}</p>
+                </div>
+            </div>
+            <a href="${achievement.link}" class="achievement-link" target="_blank" rel="noopener noreferrer" title="View Certificate">
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    `;
+}
+
+function createSocialLink(platform, url) {
+    const iconMap = {
+        github: 'fab fa-github',
+        linkedin: 'fab fa-linkedin',
+        email: 'fas fa-envelope',
+        instagram: 'fab fa-instagram'
+    };
+
+    const href = platform === 'email' ? `mailto:${url}` : url;
+    const target = platform === 'email' ? '' : 'target="_blank" rel="noopener noreferrer"';
+    
+    return `
+        <a href="${href}" class="social-link" ${target} title="${platform.charAt(0).toUpperCase() + platform.slice(1)}">
+            <i class="${iconMap[platform]}"></i>
+        </a>
+    `;
+}
+
+// Portfolio Initialization
+function initializePortfolio() {
+    try {
+        // Update hero section
+        const heroName = document.getElementById('hero-name');
+        const heroTagline = document.getElementById('hero-tagline');
+        const profileImg = document.getElementById('profile-img');
+        const footerName = document.getElementById('footer-name');
+        
+        if (heroName) heroName.textContent = portfolioData.hero.name;
+        if (heroTagline) heroTagline.textContent = portfolioData.hero.tagline;
+        if (profileImg) {
+            profileImg.src = portfolioData.hero.profileImage;
+            profileImg.alt = `${portfolioData.hero.name} - Profile Picture`;
+        }
+        if (footerName) footerName.textContent = portfolioData.hero.name;
+        
+        // Update about section
+        const aboutText = document.getElementById('about-text');
+        if (aboutText) aboutText.textContent = portfolioData.about.text;
+        
+        // Update education section
+        const degree = document.getElementById('degree');
+        const university = document.getElementById('university');
+        const year = document.getElementById('year');
+        
+        if (degree) degree.textContent = portfolioData.education.degree;
+        if (university) university.textContent = portfolioData.education.university;
+        if (year) year.textContent = portfolioData.education.year;
+        
+        // Generate skills section
+        const skillsGrid = document.getElementById('skills-grid');
+        if (skillsGrid) {
+            skillsGrid.innerHTML = Object.entries(portfolioData.skills)
+                .map(([category, skills]) => createSkillCard(category, skills))
+                .join('');
+        }
+        
+        // Generate projects section
+        const projectsGrid = document.getElementById('projects-grid');
+        if (projectsGrid) {
+            projectsGrid.innerHTML = portfolioData.projects
+                .map(project => createProjectCard(project))
+                .join('');
+        }
+        
+        // Generate achievements section
+        const achievementsList = document.getElementById('achievements-list');
+        if (achievementsList) {
+            achievementsList.innerHTML = portfolioData.achievements
+                .map(achievement => createAchievementItem(achievement))
+                .join('');
+        }
+        
+        // Generate social links
+        const socialLinks = document.getElementById('social-links');
+        if (socialLinks) {
+            socialLinks.innerHTML = Object.entries(portfolioData.contact)
+                .map(([platform, url]) => createSocialLink(platform, url))
+                .join('');
+        }
+        
+        console.log('Portfolio initialized successfully');
+    } catch (error) {
+        console.error('Error initializing portfolio:', error);
+    }
+}
+
+// Event Handlers
+function setupMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    }
+}
+
+function setupProjectCards() {
+    document.addEventListener('click', (e) => {
+        const projectCard = e.target.closest('.project-card');
+        
+        if (projectCard && !e.target.closest('.project-link')) {
+            const cardId = projectCard.dataset.projectId;
+            
+            // If another card is flipped, flip it back
+            if (currentFlippedCard && currentFlippedCard !== projectCard) {
+                currentFlippedCard.classList.remove('flipped');
+            }
+            
+            // Toggle current card
+            projectCard.classList.toggle('flipped');
+            
+            // Update current flipped card reference
+            currentFlippedCard = projectCard.classList.contains('flipped') ? projectCard : null;
+        }
+    });
+}
+
+function setupNavigation() {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            scrollToSection(targetId);
+        });
+    });
+    
+    // Update active nav link on scroll
+    const debouncedUpdateNav = debounce(updateActiveNavLink, 10);
+    window.addEventListener('scroll', debouncedUpdateNav);
+}
+
+function setupResumeButton() {
+    const resumeBtn = document.getElementById('resume-btn');
+    
+    if (resumeBtn) {
+        resumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (portfolioData.hero.resumeLink && portfolioData.hero.resumeLink !== '#') {
+                // Create a temporary link element to trigger download
+                const link = document.createElement('a');
+                link.href = portfolioData.hero.resumeLink;
+                link.download = `${portfolioData.hero.name}_Resume.pdf`;
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert('Resume link not configured. Please update the resumeLink in portfolioData.');
+            }
+        });
+    }
+}
+
+// Animation Functions
+function startTypingAnimation() {
+    const tagline = document.getElementById('hero-tagline');
+    
+    if (tagline && !isTypingComplete) {
+        const originalText = portfolioData.hero.tagline;
+        tagline.textContent = '';
+        
+        let i = 0;
+        const typingSpeed = 50;
+        
+        function typeWriter() {
+            if (i < originalText.length) {
+                tagline.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                isTypingComplete = true;
+            }
+        }
+        
+        // Start typing animation after a delay
+        setTimeout(typeWriter, 1500);
+    }
+}
+
+function setupScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                
+                // Add stagger animation for cards
+                const cards = entry.target.querySelectorAll('.skill-card, .project-card, .achievement-item');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        });
+    }, observerOptions);
+    
+    // Observe sections for scroll animations
+    document.querySelectorAll('section:not(#hero)').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'all 0.8s ease';
+        observer.observe(section);
+        
+        // Prepare cards for stagger animation
+        const cards = section.querySelectorAll('.skill-card, .project-card, .achievement-item');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+    });
+}
+
+function createParticleBackground() {
+    const hero = document.getElementById('hero');
+    
+    if (hero && !hero.querySelector('.particles-container')) {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.className = 'particles-container';
+        particlesContainer.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        `;
+        
+        // Create floating particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 3 + 1}px;
+                height: ${Math.random() * 3 + 1}px;
+                background: rgba(139, 92, 246, ${Math.random() * 0.5 + 0.1});
+                border-radius: 50%;
+                animation: float ${Math.random() * 15 + 10}s linear infinite;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                animation-delay: ${Math.random() * 15}s;
+            `;
+            particlesContainer.appendChild(particle);
+        }
+        
+        hero.insertBefore(particlesContainer, hero.firstChild);
+        
+        // Add CSS animation for particles
+        if (!document.getElementById('particle-styles')) {
+            const style = document.createElement('style');
+            style.id = 'particle-styles';
+            style.textContent = `
+                @keyframes float {
+                    0% { 
+                        transform: translateY(100vh) rotate(0deg); 
+                        opacity: 0; 
+                    }
+                    10% { 
+                        opacity: 1; 
+                    }
+                    90% { 
+                        opacity: 1; 
+                    }
+                    100% { 
+                        transform: translateY(-100vh) rotate(360deg); 
+                        opacity: 0; 
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+}
+
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 1000);
+    }
+}
+
+// Window Event Handlers
+function handleResize() {
+    const navMenu = document.getElementById('nav-menu');
+    const hamburger = document.getElementById('hamburger');
+    
+    // Close mobile menu on desktop
+    if (window.innerWidth > 768 && navMenu && hamburger) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+}
+
+// Error Handling
+function handleErrors() {
+    window.addEventListener('error', (e) => {
+        console.error('Portfolio Error:', e.error);
+    });
+    
+    // Handle image loading errors
+    document.addEventListener('error', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.target.src = 'https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=Image+Not+Found';
+            e.target.alt = 'Image not found';
+        }
+    }, true);
+}
+
+// Main Initialization Function
+function initializeApp() {
+    try {
+        console.log('Initializing portfolio application...');
+        
+        // Initialize portfolio content
+        initializePortfolio();
+        
+        // Setup event listeners
+        setupMobileMenu();
+        setupProjectCards();
+        setupNavigation();
+        setupResumeButton();
+        
+        // Setup animations
+        startTypingAnimation();
+        setupScrollAnimations();
+        createParticleBackground();
+        
+        // Handle loading screen
+        hideLoadingScreen();
+        
+        // Setup window events
+        window.addEventListener('resize', debounce(handleResize, 250));
+        
+        // Setup error handling
+        handleErrors();
+        
+        console.log('Portfolio application initialized successfully');
+        
+    } catch (error) {
+        console.error('Error initializing application:', error);
+        
+        // Hide loading screen even if there's an error
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+    }
+}
+
+// Initialize when DOM is fully loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
+
+// Smooth scrolling polyfill for older browsers
+if (!('scrollBehavior' in document.documentElement.style)) {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js';
+    script.onload = () => console.log('Smooth scroll polyfill loaded');
+    script.onerror = () => console.warn('Failed to load smooth scroll polyfill');
+    document.head.appendChild(script);
+}
+
+// Export for potential module use
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { portfolioData, initializeApp };
+}
