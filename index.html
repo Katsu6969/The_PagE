@@ -3,12 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhur - Portfolio</title>
+    <title>Madhur Shukla - AI/ML Developer & Tech Enthusiast</title>
+    <meta name="description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas. View my portfolio of projects and skills.">
+    <meta name="keywords" content="Madhur Shukla, AI/ML Developer, Machine Learning, Artificial Intelligence, Web Developer, Portfolio, Tech Enthusiast">
+    <meta name="author" content="Madhur Shukla">
+    <meta property="og:title" content="Madhur Shukla - AI/ML Developer & Tech Enthusiast">
+    <meta property="og:description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://madhurshukla.dev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Madhur Shukla - AI/ML Developer & Tech Enthusiast">
+    <meta name="twitter:description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas.">
+    <link rel="canonical" href="https://madhurshukla.dev">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="profile.jpeg" as="image">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
+    <!-- Skip to Content Link -->
+    <a href="#hero" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading Portfolio...</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -17,7 +42,7 @@
                 Madhur
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#about" class="nav-link">About</a>
+                <a href="#hero" class="nav-link">Home</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#achievements" class="nav-link">Achievements</a>
@@ -46,12 +71,14 @@
             <div class="hero-content">
                 <div class="profile-section">
                     <div class="profile-image">
-                        <img src="./profile.jpeg" alt="Profile Picture" id="profile-img">
+                        <img src="./profile.jpeg" alt="Madhur Shukla - AI/ML Developer and Tech Enthusiast" id="profile-img" loading="eager">
                     </div>
                 </div>
                 
                 <div class="about-section">
-                    <h2 class="about-title">About Me</h2>
+                    <h2 class="about-title">
+                        <i class="fas fa-user"></i>About Me
+                    </h2>
                     <p id="about-text" class="about-text">
                         I am a passionate technology learner with a growing interest in Artificial Intelligence and Machine Learning. 
                         My focus is on building practical solutions, collaborating effectively in teams, and continuously improving my skills. 
@@ -75,24 +102,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-user"></i>About Me
-            </h2>
-            <div class="about-card">
-                <div class="card-header">
-                    <h3></h3>
-                </div>
-                <p id="about-text">
-                    I am a passionate technology learner with a growing interest in Artificial Intelligence and Machine Learning. 
-                    My focus is on building practical solutions, collaborating effectively in teams, and continuously improving my skills. 
-                    Outside of coding, I enjoy playing sports, exploring video games, and engaging in conversations that spark creativity and new ideas.
-                </p>
-            </div>
-        </div>
-    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills">

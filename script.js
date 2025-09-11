@@ -17,91 +17,28 @@ const portfolioData = {
         "Tools & Technologies": ["Git", "Figma", "Canva", "VS Code", "Jupyter"]
     },
     projects: [
-        {
-            id: 1,
-            name: "AI Chatbot Assistant",
-            image: "https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=AI+Chatbot",
-            description: "Intelligent chatbot using natural language processing and machine learning for automated customer support with sentiment analysis.",
-            tools: ["Python", "TensorFlow", "Flask", "NLP"],
-            github: "https://github.com/yourusername/ai-chatbot",
-            demo: "https://your-demo-link.com"
-        },
-        {
-            id: 2,
-            name: "E-commerce Platform",
-            image: "https://via.placeholder.com/400x250/A855F7/FFFFFF?text=E-commerce",
-            description: "Full-stack e-commerce solution with secure payment integration, inventory management, and comprehensive admin dashboard.",
-            tools: ["React", "Node.js", "MongoDB", "Stripe"],
-            github: "https://github.com/yourusername/ecommerce",
-            demo: "https://your-demo-link.com"
-        },
-        {
-            id: 3,
-            name: "Data Visualization Dashboard",
-            image: "https://via.placeholder.com/400x250/EC4899/FFFFFF?text=Data+Viz",
-            description: "Interactive dashboard for complex data analysis with real-time updates, custom charts, and export functionality.",
-            tools: ["D3.js", "Python", "PostgreSQL", "Chart.js"],
-            github: "https://github.com/yourusername/dataviz",
-            demo: "https://your-demo-link.com"
-        },
-        {
-            id: 4,
-            name: "Mobile Task Manager",
-            image: "https://via.placeholder.com/400x250/7C3AED/FFFFFF?text=Task+Manager",
-            description: "Cross-platform mobile application for productivity management with offline sync and collaborative features.",
-            tools: ["React Native", "Firebase", "Redux", "Node.js"],
-            github: "https://github.com/yourusername/task-manager",
-            demo: "https://your-demo-link.com"
-        },
-        {
-            id: 5,
-            name: "Blockchain Voting System",
-            image: "https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=Blockchain",
-            description: "Secure and transparent voting system using blockchain technology to ensure vote integrity and anonymity.",
-            tools: ["Solidity", "Web3.js", "Ethereum", "React"],
-            github: "https://github.com/yourusername/blockchain-voting",
-            demo: "https://your-demo-link.com"
-        },
-        {
-            id: 6,
-            name: "Weather Prediction ML Model",
-            image: "https://via.placeholder.com/400x250/A855F7/FFFFFF?text=Weather+ML",
-            description: "Machine learning model for accurate weather prediction using historical data and advanced algorithms with web interface.",
-            tools: ["Python", "Scikit-learn", "Flask", "Matplotlib"],
-            github: "https://github.com/yourusername/weather-ml",
-            demo: "https://your-demo-link.com"
-        }
+    //    {
+     //       id: 1,
+     //       name: "Project - 1",
+            //image: "",
+      //      description: "Intelligent chatbot using natural language processing and machine learning for automated customer support with sentiment analysis.",
+      //      tools: ["Python", "TensorFlow", "Flask", "NLP"],
+       //     github: "https://github.com/yourusername/ai-chatbot",
+       //     demo: "https://your-demo-link.com"
+        // },
     ],
     achievements: [
         {
-            title: "AWS Certified Solutions Architect",
-            issuer: "Amazon Web Services",
-            link: "https://aws.amazon.com/certification/",
+            title: "Data Science Fundamental Certificate",
+            issuer: "IBM Skills Build",
+            link: "https://www.credly.com/badges/9224b96d-c231-4918-9b5c-6cb9aa886e77/public_url",
             type: "certification"
         },
         {
-            title: "Google Data Analytics Professional Certificate",
-            issuer: "Google Career Certificates",
-            link: "https://grow.google/certificates/data-analytics/",
+            title: "Web Development Fundamentals Certificate",
+            issuer: "IBM Skills Build",
+            link: "https://www.credly.com/badges/4acdd93c-2c4a-49b8-8c98-c423bc34999b/public_url",
             type: "certification"
-        },
-        {
-            title: "Microsoft Azure Fundamentals",
-            issuer: "Microsoft",
-            link: "https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/",
-            type: "certification"
-        },
-        {
-            title: "First Place - University Hackathon 2024",
-            issuer: "Your University Tech Department",
-            link: "#",
-            type: "achievement"
-        },
-        {
-            title: "Best Innovation Award - State Level Competition",
-            issuer: "State Technology Board",
-            link: "#",
-            type: "achievement"
         },
         {
             title: "Volleyball Regional Level 2022",
@@ -109,12 +46,6 @@ const portfolioData = {
             link: "#",
             type: "achievement"
         },
-        {
-            title: "Open Source Contributor - 500+ Commits",
-            issuer: "GitHub Community",
-            link: "https://github.com/yourusername",
-            type: "achievement"
-        }
     ],
     education: {
         degree: "Bachelor of Technology in Computer Science",
@@ -122,10 +53,10 @@ const portfolioData = {
         year: "2023-Present"
     },
     contact: {
-        github: "https://github.com/yourusername",
-        linkedin: "https://linkedin.com/in/yourusername",
-        email: "your.email@example.com",
-        instagram: "https://instagram.com/yourusername" // Optional - remove if not needed
+        github: "https://github.com/Katsu6969",
+        linkedin: "https://linkedin.com/in/",
+        email: "katsusally1618@gmail.com",
+        instagram: "https://instagram.com/mad_kat18" // Optional -
     }
 };
 
@@ -743,6 +674,19 @@ function handleErrors() {
             e.target.alt = 'Image not found';
         }
     }, true);
+}
+
+// Loading Screen Management
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 1500); // Show loading for 1.5 seconds
+    }
 }
 
 // Main Initialization Function
