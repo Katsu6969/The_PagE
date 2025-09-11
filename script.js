@@ -7,12 +7,12 @@ const portfolioData = {
         resumeLink: "#" // Add your resume PDF link here
     },
     about: {
-        text: "Passionate tech enthusiast with a love for AI and machine learning. When I'm not coding, you'll find me on the volleyball court or exploring new ideas with friends. I believe in building technology that makes a difference."
+        text: "Hey there! I am Madhur Shukla, a passionate technology learner with a growing interest in Artificial Intelligence and Machine Learning. My focus is on building practical solutions, collaborating effectively in teams, and continuously improving my skills. Outside of Worklife, I enjoy playing sports, exploring and playing video games, and engaging in conversations with people."
     },
     skills: {
         "Soft Skills": ["Problem Solving", "Team Leadership", "Communication", "Adaptability", "Creative Thinking"],
         "Programming": ["Python", "JavaScript", "Java", "C-(Basic)"],
-        "Web Development": ["React", "HTML/CSS", "MongoDB",],
+        "Web Development": ["React", "HTML/CSS"],
         "Data": ["Data Analysis", "Pandas", "Ms-office"],
         "Tools & Technologies": ["Git", "Figma", "Canva", "VS Code", "Jupyter"]
     },
@@ -118,8 +118,8 @@ const portfolioData = {
     ],
     education: {
         degree: "Bachelor of Technology in Computer Science",
-        university: "Your University Name",
-        year: "2021-2025"
+        university: "Shri Ramswaroop Memorial University (SRMU), Lucknow",
+        year: "2023-Present"
     },
     contact: {
         github: "https://github.com/yourusername",
@@ -300,7 +300,7 @@ function initializePortfolio() {
         const footerName = document.getElementById('footer-name');
         
         if (heroName) heroName.textContent = portfolioData.hero.name;
-        if (heroTagline) heroTagline.textContent = portfolioData.hero.tagline;
+        // if (heroTagline) heroTagline.textContent = portfolioData.hero.tagline;
         if (profileImg) {
             profileImg.src = portfolioData.hero.profileImage;
             profileImg.alt = `${portfolioData.hero.name} - Profile Picture`;
@@ -388,6 +388,58 @@ function setupMobileMenu() {
 }
 
 function setupProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Setup cursor tracking for each card
+    projectCards.forEach(card => {
+        // Mouse move handler for dynamic tilting
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate relative position (0 to 1)
+            const relX = x / rect.width;
+            const relY = y / rect.height;
+            
+            // Remove all tilt classes first
+            card.classList.remove('tilt-top-left', 'tilt-top-right', 'tilt-bottom-left', 'tilt-bottom-right', 
+                                'tilt-top-mid', 'tilt-bottom-mid', 'tilt-mid-left', 'tilt-mid-right');
+            
+            // Determine tilt direction based on cursor position
+            if (relY < 0.33) { // Top third
+                if (relX < 0.33) {
+                    card.classList.add('tilt-top-left');
+                } else if (relX > 0.66) {
+                    card.classList.add('tilt-top-right');
+                } else {
+                    card.classList.add('tilt-top-mid');
+                }
+            } else if (relY > 0.66) { // Bottom third
+                if (relX < 0.33) {
+                    card.classList.add('tilt-bottom-left');
+                } else if (relX > 0.66) {
+                    card.classList.add('tilt-bottom-right');
+                } else {
+                    card.classList.add('tilt-bottom-mid');
+                }
+            } else { // Middle third
+                if (relX < 0.33) {
+                    card.classList.add('tilt-mid-left');
+                } else if (relX > 0.66) {
+                    card.classList.add('tilt-mid-right');
+                }
+            }
+        });
+
+        // Mouse leave handler to reset tilt
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('tilt-top-left', 'tilt-top-right', 'tilt-bottom-left', 'tilt-bottom-right', 
+                                'tilt-top-mid', 'tilt-bottom-mid', 'tilt-mid-left', 'tilt-mid-right');
+        });
+    });
+
+    // Click handler for flip
     document.addEventListener('click', (e) => {
         const projectCard = e.target.closest('.project-card');
         
@@ -450,25 +502,37 @@ function setupResumeButton() {
 function startTypingAnimation() {
     const tagline = document.getElementById('hero-tagline');
     
-    if (tagline && !isTypingComplete) {
+    if (tagline) {
         const originalText = portfolioData.hero.tagline;
-        tagline.textContent = '';
-        
         let i = 0;
-        const typingSpeed = 50;
+        const typingSpeed = 100; // Speed of typing
+        const erasingSpeed = 50; // Speed of erasing (faster)
+        const pauseTime = 1500; // Pause between forward and reverse
         
-        function typeWriter() {
+        function typeForward() {
             if (i < originalText.length) {
                 tagline.textContent += originalText.charAt(i);
                 i++;
-                setTimeout(typeWriter, typingSpeed);
+                setTimeout(typeForward, typingSpeed);
             } else {
-                isTypingComplete = true;
+                // Wait, then start erasing
+                setTimeout(typeReverse, pauseTime);
             }
         }
         
-        // Start typing animation after a delay
-        setTimeout(typeWriter, 1500);
+        function typeReverse() {
+            if (i > 0) {
+                tagline.textContent = originalText.substring(0, i - 1);
+                i--;
+                setTimeout(typeReverse, erasingSpeed);
+            } else {
+                // Wait, then start typing again
+                setTimeout(typeForward, pauseTime);
+            }
+        }
+        
+        // Start the animation
+        typeForward();
     }
 }
 
@@ -488,9 +552,8 @@ function setupScrollAnimations() {
                 const cards = entry.target.querySelectorAll('.skill-card, .project-card, .achievement-item');
                 cards.forEach((card, index) => {
                     setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 100);
+                        card.classList.add('animate-in');
+                    }, index * 150);
                 });
             }
         });
@@ -506,9 +569,8 @@ function setupScrollAnimations() {
         // Prepare cards for stagger animation
         const cards = section.querySelectorAll('.skill-card, .project-card, .achievement-item');
         cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
+            // Cards start with CSS-defined hidden state
+            card.classList.remove('animate-in');
         });
     });
 }
@@ -602,6 +664,72 @@ function handleResize() {
     }
 }
 
+// Eye Tracking Setup
+function setupCursorEmoji() {
+    const character = document.getElementById('watching-character');
+    const contactSection = document.getElementById('contact');
+    const leftPupil = document.querySelector('.left-eye .pupil');
+    const rightPupil = document.querySelector('.right-eye .pupil');
+    let isInContactSection = false;
+    
+    if (!character || !contactSection || !leftPupil || !rightPupil) return;
+    
+    // Mouse move handler
+    function handleMouseMove(e) {
+        if (isInContactSection) {
+            const characterRect = character.getBoundingClientRect();
+            const characterCenterX = characterRect.left + characterRect.width / 2;
+            const characterCenterY = characterRect.top + characterRect.height / 2;
+            
+            // Calculate angle from character center to cursor
+            const deltaX = e.clientX - characterCenterX;
+            const deltaY = e.clientY - characterCenterY;
+            const angle = Math.atan2(deltaY, deltaX);
+            
+            // Calculate pupil position (limited movement within eye)
+            const maxDistance = 3; // Maximum pixels the pupil can move
+            const pupilX = Math.cos(angle) * maxDistance;
+            const pupilY = Math.sin(angle) * maxDistance;
+            
+            // Apply pupil movement
+            leftPupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+            rightPupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+        }
+    }
+    
+    // Mouse leave handler - reset eyes to center
+    function handleMouseLeave() {
+        leftPupil.style.transform = 'translate(-50%, -50%)';
+        rightPupil.style.transform = 'translate(-50%, -50%)';
+    }
+    
+    // Intersection observer to detect when contact section is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                isInContactSection = true;
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseleave', handleMouseLeave);
+            } else {
+                isInContactSection = false;
+                handleMouseLeave(); // Reset eyes when leaving section
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseleave', handleMouseLeave);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    observer.observe(contactSection);
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseleave', handleMouseLeave);
+    });
+}
+
 // Error Handling
 function handleErrors() {
     window.addEventListener('error', (e) => {
@@ -630,6 +758,7 @@ function initializeApp() {
         setupProjectCards();
         setupNavigation();
         setupResumeButton();
+        setupCursorEmoji();
         
         // Setup animations
         startTypingAnimation();
