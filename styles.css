@@ -1685,3 +1685,69 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* Performance: reduce heavy animations on mobile and for reduced-motion users */
+@media (max-width: 768px) {
+    /* Disable looping gradient and entry animations in hero */
+    .hero-background,
+    .hero-name,
+    .hero-tagline,
+    .hero-quote,
+    .hero-buttons {
+        animation: none !important;
+    }
+
+    /* Avoid large gradient shifts and expensive filters */
+    .hero-name,
+    .hero-tagline {
+        background-size: 100% 100% !important;
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    /* About/section icon animations off on mobile */
+    .section-title i {
+        animation: none !important;
+        filter: none !important;
+    }
+
+    /* General: reduce blur/shadow costs near the top */
+    .hero * {
+        filter: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Mobile hero tagline: keep to one line and adjust spacing */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 4.5rem; /* give room under fixed navbar */
+    }
+    .hero-tagline {
+        font-size: 1.6rem; /* slightly smaller to fit one line */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 92vw;
+        margin: 1rem auto 1.5rem; /* nudge lower to avoid clipping */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 5rem; /* a bit more space on very small screens */
+    }
+    .hero-tagline {
+        font-size: 1.4rem;
+        max-width: 94vw;
+    }
+}
