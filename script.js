@@ -1060,7 +1060,7 @@
                     return;
                 }
             }
-            showToast('Resume PDF is being finalized — add it to assets/Madhur_Shukla_Resume.pdf to enable direct download.');
+            showToast('Resume is available on request — feel free to reach out via Email or LinkedIn.');
         });
     }
 

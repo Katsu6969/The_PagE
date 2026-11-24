@@ -1,27 +1,22 @@
-# Madhur Shukla — Data Science & AI Portfolio
+# Madhur Shukla — Personal Portfolio
 
-Personal portfolio website for **Madhur Shukla**, B.Tech Computer Science & Engineering student (Data Science & AI) at Shri Ramswaroop Memorial University (SRMU). Built cleanly with semantic **HTML5**, modern **CSS3**, and vanilla **JavaScript** for GitHub Pages deployment.
+Personal portfolio website showcasing my work, skills, projects, hackathons, and certifications in **Data Science & Artificial Intelligence**.
 
-## Key Features
-- **Dark & Light Themes**: Deep navy/charcoal dark mode with teal/cyan and soft blue accents, plus a persisted light mode toggle (`localStorage`).
-- **Data-Driven Configuration**: All portfolio content (projects, skills, experience, education, certifications, links) lives in [`data.js`](./data.js) for quick updates.
-- **Filterable Projects & Full Case Study Modal**: Category filtering (`Data Analytics`, `Data Visualization`, `Machine Learning`, `SQL / Database`, `Python`) and an expandable 13-part case study modal with custom analytical SVG visuals and `#project/<id>` URL hash support.
-- **Verified Credentials**: Direct links to public IBM Credly badges.
-- **Accessible & Responsive**: Sticky glassmorphic navigation, scroll progress indicator, active-section spy, mobile menu drawer, keyboard-accessible dialogs, `prefers-reduced-motion` support, and a working contact flow.
+## About
+I am a B.Tech Computer Science & Engineering student (Specialization: Data Science & AI) at Shri Ramswaroop Memorial University (SRMU), focused on data analytics, SQL querying, BI dashboards, and applied machine learning.
 
-## Structure
-```text
-.
-├── index.html                        # Semantic single-page portfolio structure
-├── styles.css                        # Dark/Light theme tokens & responsive layout
-├── data.js                           # Centralized editable portfolio content
-├── script.js                         # Interactive UI, canvas, filters & modal logic
-├── assets/
-│   └── Madhur_Shukla_Resume.pdf      # Downloadable single-page resume PDF
-└── resume/
-    └── Madhur_Shukla_Resume.tex      # Overleaf-ready LaTeX resume source
-```
+## Highlights
+- **Dark & Light Mode** with saved user preference
+- **Responsive Design** across desktop, tablet, and mobile devices
+- **Interactive Project Case Studies** with category filtering and detailed analytical breakdowns
+- **Verified Credentials** linking directly to IBM Credly badges
 
-## Updating Content
-1. Edit `data.js` to add new projects, update GitHub links, or paste a Formspree/Web3Forms `formEndpoint`.
-2. Edit `resume/Madhur_Shukla_Resume.tex` in Overleaf (or local LaTeX) and replace `assets/Madhur_Shukla_Resume.pdf` whenever you update your resume.
+## Built With
+- HTML5
+- CSS3
+- Vanilla JavaScript
+
+## Connect
+- **GitHub:** [github.com/Katsu6969](https://github.com/Katsu6969)
+- **LinkedIn:** [linkedin.com/in/madhur-shukla](https://www.linkedin.com/in/madhur-shukla-0601bb293)
+- **Email:** madhurshukla23@gmail.com

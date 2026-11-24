@@ -1,5 +1,7 @@
-# Private local certificates (not pushed to public GitHub repo)
+# Private local files (excluded from public repo)
 Certificates and Opportunities/
+assets/
+resume/
 
 # LaTeX build artifacts
 *.aux
