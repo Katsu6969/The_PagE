@@ -1,0 +1,177 @@
+%-------------------------
+% Madhur Shukla — Data Science & Analytics Resume (ATS-Friendly LaTeX)
+% Compiles cleanly on Overleaf (pdfLaTeX) with zero custom dependencies.
+%-------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins (clean single-page fit)
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure generated PDF is machine-readable / ATS-parsable
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1 \vspace{-2pt}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.1in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.22in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADER----------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  {\Huge \scshape \textbf{Madhur Shukla}} & \small +91 9369951869 $|$ \href{mailto:madhurshukla23@gmail.com}{\underline{madhurshukla23@gmail.com}} \\
+  \small B.Tech CSE (Data Science \& AI) $|$ Lucknow, India & \small \href{https://www.linkedin.com/in/madhur-shukla-0601bb293}{\underline{linkedin.com/in/madhur-shukla}} $|$ \href{https://github.com/Katsu6969}{\underline{github.com/Katsu6969}} \\
+\end{tabular*}
+\vspace{-6pt}
+
+%----------PROFESSIONAL SUMMARY----------
+\section{Summary}
+\small{
+B.Tech Computer Science \& Engineering student specializing in Data Science \& Artificial Intelligence, focused on exploratory data analysis, SQL querying, BI reporting, and applied machine learning. Experienced in turning raw datasets into structured insights using Python, Pandas, NumPy, SQL, Power BI, and Scikit-learn. Seeking Data Analyst or Data Science internship opportunities.
+}
+\vspace{-4pt}
+
+%----------EDUCATION----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Shri Ramswaroop Memorial University (SRMU)}{Lucknow, India}
+      {B.Tech in Computer Science \& Engineering — Specialization: Data Science \& AI}{}
+    \resumeSubheading
+      {Spring Dale College}{Lucknow, India}
+      {Higher Secondary Education (ISC / Class XII) — Science \& Mathematics}{}
+  \resumeSubHeadingListEnd
+  \vspace{-4pt}
+  \small{\textbf{Relevant Coursework:} Data Structures \& Algorithms (DSA), Design \& Analysis of Algorithms (DAA), Artificial Intelligence, Machine Learning, Data Science, Database Management Systems (DBMS), Operating Systems, Probability \& Statistics.}
+\vspace{-2pt}
+
+%----------TECHNICAL SKILLS----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.1in, label={}]
+    \small{\item{
+     \textbf{Programming Languages:} Python, SQL, Java, JavaScript, HTML5, CSS3 \\
+     \textbf{Data Analysis \& ML:} Pandas, NumPy, Scikit-learn, Exploratory Data Analysis (EDA), Data Cleaning, Statistical Analysis, Feature Engineering \\
+     \textbf{Databases \& BI Tools:} MySQL (Joins, CTEs, Window Functions), Power BI, Microsoft Excel, Matplotlib, Seaborn \\
+     \textbf{Developer Tools:} Git, GitHub, Jupyter Notebook, VS Code
+    }}
+ \end{itemize}
+\vspace{-8pt}
+
+%----------PROJECTS----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{BMW Global Sales \& Market Trend Analysis (2014--2020)} $|$ \emph{Python, Pandas, NumPy, Matplotlib, Excel}}{\href{https://github.com/Katsu6969}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Cleaned and audited 7 years of BMW automotive sales records across Excel and Pandas, removing duplicate listings, standardizing categorical labels, and isolating numeric outliers via IQR filtering.}
+            \resumeItem{Engineered derived metrics including vehicle age, price-per-mile depreciation bands, and year-over-year volume growth to identify top-performing model families (3 Series, 1 Series, X Series).}
+            \resumeItem{Built multi-panel Matplotlib visualizations revealing shifting fuel-type demand (2017--2020), transmission pricing premiums, and key mileage depreciation inflection thresholds.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Customer Churn Prediction \& Retention Analytics} $|$ \emph{Python, Scikit-learn, Pandas, NumPy, Seaborn}}{\href{https://github.com/Katsu6969}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Designed an end-to-end binary classification workflow with leakage-free \texttt{ColumnTransformer} preprocessing pipelines and stratified 5-fold cross-validation to predict subscription churn.}
+            \resumeItem{Benchmarked Logistic Regression, Random Forest, and Gradient Boosting models using ROC-AUC, Precision-Recall, and threshold tuning aligned to retention cost trade-offs.}
+            \resumeItem{Translated feature importance and risk probabilities into actionable Low/Medium/High churn cohorts highlighting month-to-month contracts and early-tenure risk drivers.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{E-Commerce Revenue, Cohort \& SQL KPI Analytics} $|$ \emph{MySQL, SQL, Power BI, Excel}}{\href{https://github.com/Katsu6969}{\underline{GitHub}}}
+          \resumeItemListStart
+            \resumeItem{Structured relational MySQL queries and views using CTEs and window functions (\texttt{LAG}, \texttt{DENSE\_RANK}, \texttt{NTILE}) to compute GMV, Average Order Value (AOV), and MoM revenue growth.}
+            \resumeItem{Implemented RFM (Recency, Frequency, Monetary) customer segmentation and monthly acquisition cohort retention tables to isolate repeat-purchase behavior and Pareto category drivers.}
+            \resumeItem{Modeled executive Power BI KPI layouts with DAX measures for cross-filtered revenue and category margin analysis.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+\vspace{-6pt}
+
+%----------HACKATHONS & PRACTICAL EXPERIENCE----------
+\section{Hackathons \& Achievements}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Convolve 4.0 — Pan-IIT AI/ML Hackathon} $|$ \emph{IIT Guwahati, IIT Madras, IIT Kanpur \& 6 Partner IITs}}{Jan -- Feb 2026}
+          \resumeItemListStart
+            \resumeItem{Competed in the preliminary round of the national pan-IIT AI/ML hackathon, collaborating on exploratory analysis, feature formulation, and structured model prototyping under timed constraints.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Smart India Hackathon (SIH) — 2$\times$ Participant} $|$ \emph{MoE Innovation Cell, AICTE \& SRMU}}{2025 \& 2026}
+          \resumeItemListStart
+            \resumeItem{Selected for two consecutive institutional rounds of Smart India Hackathon, contributing to problem scoping, data workflow design, and team solution prototypes.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Regional Level Volleyball} $|$ \emph{ICSE / ISC National Sports}}{2022}
+          \resumeItemListStart
+            \resumeItem{Represented at the ICSE/ISC Regional Level Volleyball tournament, demonstrating teamwork and discipline under competitive pressure.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+\vspace{-6pt}
+
+%----------CERTIFICATIONS----------
+\section{Certifications}
+  \begin{itemize}[leftmargin=0.1in, label={}]
+    \small{\item{
+      \textbf{Python for Data Science} — IBM (IBM Skills Network), Feb 2026 \hfill \href{https://www.credly.com/badges/6353235e-21c9-43c8-a3b6-466c7b84471f}{\underline{Verify Credential}} \\
+      \textbf{Data Fundamentals} — IBM SkillsBuild, Sep 2025 \hfill \href{https://www.credly.com/badges/9224b96d-c231-4918-9b5c-6cb9aa886e77}{\underline{Verify Credential}} \\
+      \textbf{Web Development Fundamentals} — IBM SkillsBuild, Sep 2025 \hfill \href{https://www.credly.com/badges/4acdd93c-2c4a-49b8-8c98-c423bc34999b}{\underline{Verify Credential}}
+    }}
+  \end{itemize}
+
+\end{document}

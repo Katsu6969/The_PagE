@@ -1,230 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhur Shukla - Portfolio (A Student, Hungry for Learning. AI/ML and Tech Fanatic)</title>
-    <meta name="description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas. View my portfolio of projects and skills.">
-    <meta name="keywords" content="Madhur Shukla, AI/ML Developer, Machine Learning, Artificial Intelligence, Web Developer, Portfolio, Tech Enthusiast">
+    <title>Madhur Shukla — Computer Science Student | Data Science &amp; AI</title>
+    <meta name="description" content="Personal portfolio of Madhur Shukla, B.Tech Computer Science student specializing in Data Science & AI. Explore data analytics, SQL, BI, and machine learning case studies.">
+    <meta name="keywords" content="Madhur Shukla, Data Science, Data Analyst, Machine Learning, Python, SQL, Power BI, Portfolio, SRMU">
     <meta name="author" content="Madhur Shukla">
-    <meta property="og:title" content="Madhur Shukla - Portfolio">
-    <meta property="og:description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Madhur Shukla — Data Science &amp; AI Portfolio">
+    <meta property="og:description" content="B.Tech CSE (Data Science & AI) student focused on data analytics, machine learning, and transforming raw data into meaningful insights.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://madhurshukla.dev">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Madhur Shukla - Portfolio">
-    <meta name="twitter:description" content="Passionate technology learner specializing in AI/ML, building practical solutions and exploring innovative ideas.">
-    <link rel="canonical" href="https://madhurshukla.dev">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="profile.jpeg" as="image">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Prevent theme flash before paint -->
+    <script>
+        (function () {
+            try {
+                const saved = localStorage.getItem('portfolio-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                }
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Fonts: Manrope (Headings), Inter (Body), JetBrains Mono (Data/Metrics) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons: Devicon (Official Tech Logos) + Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Skip to Content Link -->
-    <a href="#hero" class="skip-link">Skip to main content</a>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Loading Portfolio...</p>
-        </div>
-    </div>
+    <!-- Top Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-code"></i>
-                Madhur
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#hero" class="nav-link">Home</a>
+    <!-- Sticky Header & Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#home" class="nav-brand" aria-label="Madhur Shukla Home">
+                <span class="brand-mark" aria-hidden="true">MS</span>
+                <span class="brand-name">Madhur Shukla</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#education" class="nav-link">Education</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            </nav>
+
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Toggle dark/light theme">
+                    <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
+                    <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
+                </button>
+
+                <button type="button" class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-background"></div>
-        <div class="container">
-            <div class="hero-header">
-                <p class="hero-tagline" id="hero-tagline">Building Tech, Learning AI/ML, Exploring Ideas</p>
-                <blockquote class="hero-quote">
-                    "The best way to predict the future is to create it."
-                </blockquote>
-            </div>
-            
-            <div class="hero-content">
-                <div class="profile-section">
-                    <div class="profile-image">
-                        <img src="./profile.jpeg" alt="Madhur Shukla - AI/ML Developer and Tech Enthusiast" id="profile-img" loading="eager">
+    <main id="main-content">
+        <!-- Section 01: Hero -->
+        <section id="home" class="hero section">
+            <div class="hero-grid-bg" aria-hidden="true"></div>
+            <div class="container hero-layout">
+                <div class="hero-copy">
+                    <div class="status-pill hero-anim hero-anim-1">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span id="hero-availability">Open to Data Analyst &amp; Data Science Internships</span>
                     </div>
-                </div>
-                
-                <div class="about-section">
-                    <h2 class="about-title">
-                        <i class="fas fa-user"></i>About Me
-                    </h2>
-                    <p id="about-text" class="about-text">
-                        I am a passionate technology learner with a growing interest in Artificial Intelligence and Machine Learning. 
-                        My focus is on building practical solutions, collaborating effectively in teams, and continuously improving my skills. 
-                        Outside of coding, I enjoy playing sports, exploring video games, and engaging in conversations that spark creativity and new ideas.
+
+                    <h1 class="hero-title hero-anim hero-anim-2" id="hero-name">Madhur Shukla</h1>
+                    <p class="hero-headline hero-anim hero-anim-2" id="hero-headline">
+                        Computer Science Student | Data Science &amp; AI
                     </p>
-                    <div class="hero-buttons">
-                        <button class="btn-secondary" onclick="scrollToSection('projects')">
-                            View My Work
-                        </button>
-                        <button class="btn-resume" id="resume-btn">
-                            <i class="fas fa-eye"></i>
-                            View Resume
+                    <p class="hero-description hero-anim hero-anim-3" id="hero-description">
+                        B.Tech Computer Science student specializing in Data Science &amp; AI. Focused on data analytics, machine learning, and transforming raw datasets into clear insights and practical, decision-ready solutions.
+                    </p>
+
+                    <div class="focus-chips hero-anim hero-anim-3" id="hero-focus-chips" aria-label="Primary Areas of Interest"></div>
+
+                    <div class="hero-cta hero-anim hero-anim-4">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View Projects</span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <button type="button" class="btn btn-secondary" id="download-resume-btn">
+                            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                            <span>Download Resume</span>
                         </button>
                     </div>
+
+                    <div class="hero-socials hero-anim hero-anim-4" id="hero-socials" aria-label="Direct Links"></div>
                 </div>
-            </div>
-            
-            <div class="scroll-indicator">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
-    </section>
 
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-code"></i>Skills & Expertise
-            </h2>
-            <div class="skills-grid" id="skills-grid">
-                <!-- Skills will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-laptop-code"></i>Featured Projects
-            </h2>
-            <div class="projects-grid" id="projects-grid">
-                <!-- Projects will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="achievements">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-trophy"></i>Certifications & Achievements
-            </h2>
-            <div class="achievements-list" id="achievements-list">
-                <!-- Achievements will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-graduation-cap"></i>Education Journey
-            </h2>
-            
-            <div class="education-timeline">
-                <!-- University Education -->
-                <div class="timeline-item university-item">
-                    <div class="timeline-marker university-marker">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="education-card">
-                            <div class="card-header">
-                                <h3>Bachelor of Technology</h3>
-                                <span class="year-badge">2023-Present</span>
+                <!-- Abstract Data Visual (Right Column) -->
+                <div class="hero-visual hero-anim hero-anim-3" aria-hidden="true">
+                    <div class="data-panel">
+                        <div class="data-panel-header">
+                            <div class="panel-dots">
+                                <span></span><span></span><span></span>
                             </div>
-                            <p class="institution">Shri Ramswaroop Memorial College of Engineering and Technology (SRMU)</p>
-                            <p class="location">Lucknow, India</p>
-                            <div class="education-tags">
-                                <span class="tag">Computer Science</span>
-                                <span class="tag">Active Student</span>
-                            </div>
+                            <span class="panel-label">analytics_pipeline.ipynb</span>
+                            <span class="panel-badge">ACTIVE</span>
                         </div>
-                    </div>
-                </div>
 
-                <!-- School Education -->
-                <div class="timeline-item school-item">
-                    <div class="timeline-marker school-marker">
-                        <i class="fas fa-school"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="education-card">
-                            <div class="card-header">
-                                <h3>Higher Secondary School</h3>
-                                <span class="year-badge">2021-2023</span>
+                        <div class="canvas-stage">
+                            <canvas id="hero-network-canvas" width="520" height="300"></canvas>
+                        </div>
+
+                        <div class="panel-metrics">
+                            <div class="metric-tile">
+                                <span class="metric-key">WORKFLOW</span>
+                                <span class="metric-val">EDA → SQL → ML</span>
                             </div>
-                            <p class="institution">Spring Dale College</p>
-                            <p class="location">Lucknow, India</p>
-                            <div class="education-tags">
-                                <span class="tag">HSC</span>
-                                <span class="tag">Graduated</span>
+                            <div class="metric-tile">
+                                <span class="metric-key">CORE STACK</span>
+                                <span class="metric-val">Python · Pandas · BI</span>
+                            </div>
+                            <div class="metric-tile">
+                                <span class="metric-key">FOCUS</span>
+                                <span class="metric-val">Insights &amp; Models</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-envelope"></i>Let's Connect
-            </h2>
-            <p class="contact-description">
-                Ready to collaborate? Let's build something amazing together. 😊
-            </p>
-            <div class="watching-character" id="watching-character">
-                <div class="character-face">
-                    <div class="eye left-eye">
-                        <div class="pupil"></div>
-                    </div>
-                    <div class="eye right-eye">
-                        <div class="pupil"></div>
-                    </div>
-                    <div class="mouth"></div>
+        <!-- Section 02: About Me -->
+        <section id="about" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">01 / Introduction</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-narrative reveal" id="about-narrative"></div>
+                    <div class="about-highlights reveal" id="about-highlights"></div>
                 </div>
             </div>
-            <div class="social-links" id="social-links">
-                <!-- Social links will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- Section 03: Technical Skills -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">02 / Capabilities</span>
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">
+                        Tools, languages, and analytical methods I actively use to clean data, query databases, build visualizations, and train models.
+                    </p>
+                </div>
+
+                <div class="skills-grid" id="skills-grid"></div>
+
+                <div class="learning-banner reveal" id="currently-learning"></div>
+            </div>
+        </section>
+
+        <!-- Section 04: Projects (Highest Priority) -->
+        <section id="projects" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">03 / Featured Work</span>
+                    <h2 class="section-title">Projects &amp; Case Studies</h2>
+                    <p class="section-subtitle">
+                        Structured data analytics, SQL/BI, and machine learning projects—each with a full case study covering problem framing, data preprocessing, EDA, methodology, and key insights.
+                    </p>
+                </div>
+
+                <div class="project-filters reveal" id="project-filters" role="tablist" aria-label="Filter projects by category"></div>
+
+                <div class="projects-grid" id="projects-grid"></div>
+            </div>
+        </section>
+
+        <!-- Section 05: Experience & Practical Work -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">04 / Practical Background</span>
+                    <h2 class="section-title">Experience &amp; Practical Work</h2>
+                    <p class="section-subtitle">
+                        National AI/ML hackathons, collaborative engineering sprints, and self-directed analytical builds.
+                    </p>
+                </div>
+
+                <div class="experience-list" id="experience-list"></div>
+            </div>
+        </section>
+
+        <!-- Section 06: Education -->
+        <section id="education" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">05 / Academic Foundation</span>
+                    <h2 class="section-title">Education</h2>
+                </div>
+
+                <div class="education-grid" id="education-grid"></div>
+
+                <div class="coursework-card reveal" id="coursework-card"></div>
+            </div>
+        </section>
+
+        <!-- Section 07 & 08: Certifications & Achievements -->
+        <section id="certifications" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">06 / Credentials</span>
+                    <h2 class="section-title">Certifications</h2>
+                    <p class="section-subtitle">
+                        Verified technical credentials with public badge links and downloadable certificate records.
+                    </p>
+                </div>
+
+                <div class="certifications-grid" id="certifications-grid"></div>
+
+                <div class="subsection-block">
+                    <div class="section-header reveal">
+                        <span class="section-eyebrow">07 / Recognition</span>
+                        <h2 class="section-title">Achievements &amp; Hackathons</h2>
+                    </div>
+
+                    <div class="achievements-grid" id="achievements-grid"></div>
+                </div>
+
+                <div class="subsection-block">
+                    <div class="section-header reveal">
+                        <span class="section-eyebrow">08 / Online Presence</span>
+                        <h2 class="section-title">Developer &amp; Credential Profiles</h2>
+                    </div>
+
+                    <div class="profiles-grid" id="profiles-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Contact -->
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">09 / Get In Touch</span>
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">
+                        Open to Data Analyst internships, Data Science collaborations, and analytical problem-solving discussions.
+                    </p>
+                </div>
+
+                <div class="contact-layout">
+                    <div class="contact-info reveal" id="contact-info"></div>
+
+                    <form class="contact-form reveal" id="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" name="name" placeholder="Your full name" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" placeholder="you@company.com" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="Internship opportunity / Project collaboration" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="5" placeholder="Share a brief note about your role, team, or question..." required></textarea>
+                        </div>
+
+                        <div class="form-footer">
+                            <p class="form-helper" id="form-helper">
+                                Opens your email client with a pre-filled message, or sends directly when a form endpoint is configured.
+                            </p>
+                            <button type="submit" class="btn btn-primary" id="contact-submit-btn">
+                                <span>Send Message</span>
+                                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Section 11: Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 <span id="footer-name">Madhur Shukla</span>. Built with HTML, CSS & JavaScript.</p>
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="footer-name">Madhur Shukla</span>
+                <span class="footer-copy">&copy; <span id="copyright-year"></span> All rights reserved.</span>
+            </div>
+
+            <div class="footer-links" id="footer-links"></div>
+
+            <button type="button" class="footer-top-btn" id="footer-top-btn" aria-label="Scroll back to top">
+                <span>Back to top</span>
+                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+            </button>
         </div>
     </footer>
 
+    <!-- Floating Back-to-Top Button -->
+    <button type="button" class="floating-top-btn" id="floating-top-btn" aria-label="Back to top" title="Back to top">
+        <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Project Case Study Modal -->
+    <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" hidden>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <span class="modal-category" id="modal-project-category"></span>
+                    <h2 class="modal-title" id="modal-project-title"></h2>
+                </div>
+                <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close case study">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-project-body"></div>
+        </div>
+    </div>
+
+    <!-- Accessible Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+# Private local certificates (not pushed to public GitHub repo)
+Certificates and Opportunities/
+
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# OS / Editor clutter
+.DS_Store
+Thumbs.db
+*.swp
